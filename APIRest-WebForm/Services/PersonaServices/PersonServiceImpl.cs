@@ -2,8 +2,9 @@
 using APIRest_WebForm.DTO;
 using APIRest_WebForm.Mapper;
 using APIRest_WebForm.Models;
+using APIRest_WebForm.Services.Utils;
 
-namespace APIRest_WebForm.Services
+namespace APIRest_WebForm.Services.PersonaServices
 {
     public class PersonServiceImpl : IPersonService
     {
@@ -17,7 +18,7 @@ namespace APIRest_WebForm.Services
 
 
 
-        public async Task<String> Register(PersonaDTO personDTO)
+        public async Task<string> Register(PersonaDTO personDTO)
         {
             var personExists = await dbContext.Personas.FindAsync(personDTO.NumeroIdentificacion);
             if (personExists != null)
@@ -26,12 +27,13 @@ namespace APIRest_WebForm.Services
                 newPerson.Identificador = Guid.NewGuid();
                 newPerson.FechaCreacion = DateTime.Now;
 
+                var passwordEncrypt = PasswordHasher.ComputeHash(personDTO.Pass,100);
 
                 Usuario newUsername = new()
                 {
                     Identificador = newPerson.Identificador,
                     Usuario1 = personDTO.Usuario1,
-                    Pass = personDTO.Pass
+                    Pass = passwordEncrypt,
                 };
 
                 dbContext.Personas.Add(newPerson);
@@ -43,7 +45,7 @@ namespace APIRest_WebForm.Services
             }
             else
             {
-                return "USUARIO EXISTENTE"; 
+                return "USUARIO EXISTENTE";
             }
         }
 
@@ -61,6 +63,6 @@ namespace APIRest_WebForm.Services
             }
         }
 
-        
+
     }
 }
