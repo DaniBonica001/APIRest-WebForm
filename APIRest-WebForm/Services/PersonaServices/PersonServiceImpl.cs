@@ -3,6 +3,7 @@ using APIRest_WebForm.DTO;
 using APIRest_WebForm.Mapper;
 using APIRest_WebForm.Models;
 using APIRest_WebForm.Services.Utils;
+using Microsoft.EntityFrameworkCore;
 
 namespace APIRest_WebForm.Services.PersonaServices
 {
@@ -20,8 +21,10 @@ namespace APIRest_WebForm.Services.PersonaServices
 
         public async Task<string> Register(PersonaDTO personDTO)
         {
-            var personExists = await dbContext.Personas.FindAsync(personDTO.NumeroIdentificacion);
-            if (personExists != null)
+            Console.WriteLine("Registering new user");
+            Console.WriteLine(personDTO);
+            var personExists = await dbContext.Personas.FirstOrDefaultAsync(p => p.NumeroIdentificacion == personDTO.NumeroIdentificacion);
+            if (personExists == null)
             {
                 Persona newPerson = PersonaMapper.FromPersonaDTOToPersona(personDTO);
                 newPerson.Identificador = Guid.NewGuid();
@@ -34,6 +37,7 @@ namespace APIRest_WebForm.Services.PersonaServices
                     Identificador = newPerson.Identificador,
                     Usuario1 = personDTO.Usuario1,
                     Pass = passwordEncrypt,
+                    FechaCreacion = DateTime.Now
                 };
 
                 dbContext.Personas.Add(newPerson);

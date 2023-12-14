@@ -20,14 +20,14 @@ namespace APIRest_WebForm.Mapper
 
         public static PersonaDTO FromPersonaToPersonaDTO(Persona persona)
         {
-            return new PersonaDTO
-            {
-                Nombre = persona.Nombre,
-                Apellido = persona.Apellido,
-                NumeroIdentificacion = persona.NumeroIdentificacion,
-                Email = persona.Email,
-                TipoIdentificacion = persona.TipoIdentificacion
-            };
+
+            var nombre = persona.Nombre;
+            var apellido = persona.Apellido;
+            var numeroIdentificacion = persona.NumeroIdentificacion;
+            var email = persona.Email;
+            var tipoIdentificacion = persona.TipoIdentificacion;
+
+            return new PersonaDTO(nombre,apellido,numeroIdentificacion,email,tipoIdentificacion,"","" );
         }
           
     }

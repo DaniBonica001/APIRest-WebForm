@@ -1,15 +1,13 @@
 ﻿namespace APIRest_WebForm.DTO
 {
-    public class PersonaDTO
-    {
-        public string Nombre;
-        public string Apellido;
-        public string NumeroIdentificacion;
-        public string Email;
-        public string TipoIdentificacion;
-        public string Ciudad;
-        public string Usuario1;
-        public string Pass;
-    }
+    public record PersonaDTO(
+         string Nombre,
+     string Apellido,
+     string NumeroIdentificacion,
+     string Email,
+     string TipoIdentificacion,
+     string Usuario1,
+     string Pass);
+  
     
 }

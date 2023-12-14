@@ -23,8 +23,9 @@ namespace APIRest_WebForm.Controllers
 
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register(PersonaDTO personDTO)
+        public async Task<IActionResult> Register([FromBody]PersonaDTO personDTO)
         {
+            
             return Ok(await personService.Register(personDTO));
           
         }
