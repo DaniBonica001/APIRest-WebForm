@@ -1,4 +1,8 @@
 ﻿using APIRest_WebForm.Data;
+using APIRest_WebForm.DTO;
+using APIRest_WebForm.Mapper;
+using APIRest_WebForm.Models;
+using APIRest_WebForm.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.InteropServices;
@@ -10,32 +14,35 @@ namespace APIRest_WebForm.Controllers
     [Route("api/personas/")]
     public class PersonasController : Controller
     {
-        private readonly webUsersContext dbContext;
+        private readonly IPersonService personService;
 
-        public PersonasController(webUsersContext dbContext)
+        public PersonasController(IPersonService personService)
         {
-            this.dbContext = dbContext;
+            this.personService = personService;
         }
 
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register()
+        public async Task<IActionResult> Register(PersonaDTO personDTO)
         {
-           
-            return Ok();
+            return Ok(await personService.Register(personDTO));
+          
         }
 
         [HttpGet]
         [Route("details/{id:Guid}")]
         public async Task<IActionResult> GetPersonDetails([FromRoute] Guid id)
         {
-            var person = await dbContext.Personas.FindAsync(id);
-            if (person == null)
+            PersonaDTO person = await personService.GetPersonDetails(id);
+            if (person != null)
+            {
+                return Ok(person);
+            }
+            else
             {
                 return NotFound();
             }
-
-            return Ok(person);
+            
         }
     }
 }
