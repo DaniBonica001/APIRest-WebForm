@@ -2,7 +2,7 @@
 using APIRest_WebForm.DTO;
 using APIRest_WebForm.Mapper;
 using APIRest_WebForm.Models;
-using APIRest_WebForm.Services.Persona;
+using APIRest_WebForm.Services.PersonaServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.InteropServices;

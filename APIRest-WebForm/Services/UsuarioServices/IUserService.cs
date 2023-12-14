@@ -1,7 +1,9 @@
-﻿namespace APIRest_WebForm.Services.UsuarioServices
+﻿using APIRest_WebForm.DTO;
+
+namespace APIRest_WebForm.Services.UsuarioServices
 {
     public interface IUserService
     {
-        Task<string> Login(string user, string pass);
+        Task<UsuarioDTO> Login(LoginDTO loginDTO);
     }
 }

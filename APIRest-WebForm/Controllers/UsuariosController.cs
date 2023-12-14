@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using APIRest_WebForm.DTO;
+using APIRest_WebForm.Services.UsuarioServices;
+using Microsoft.AspNetCore.Mvc;
 
 namespace APIRest_WebForm.Controllers
 {
@@ -7,12 +9,18 @@ namespace APIRest_WebForm.Controllers
     [Route("api/usuarios/")]
     public class UsuariosController : Controller
     {
+        private readonly IUserService userService;
+
+        public UsuariosController(IUserService userService)
+        {
+            this.userService = userService;
+        }
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login()
+        public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
-            return Ok();
+            return Ok(await userService.Login(loginDTO));
         }   
         
     }
