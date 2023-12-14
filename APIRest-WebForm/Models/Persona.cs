@@ -5,7 +5,7 @@ namespace APIRest_WebForm.Models
 {
     public partial class Persona
     {
-        public decimal Identificador { get; set; }
+        public Guid Identificador { get; set; }
         public string? Nombre { get; set; }
         public string? Apellido { get; set; }
         public string? NumeroIdentificacion { get; set; }

@@ -24,8 +24,8 @@ namespace APIRest_WebForm.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                // optionsBuilder.UseSqlServer("server=localhost\\SQLEXPRESS; database=webUsers; integrated security=true;");
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                //optionsBuilder.UseSqlServer("server=localhost\\SQLEXPRESS; database=webUsers; integrated security=true;");
             }
         }
 
@@ -34,12 +34,12 @@ namespace APIRest_WebForm.Data
             modelBuilder.Entity<Persona>(entity =>
             {
                 entity.HasKey(e => e.Identificador)
-                    .HasName("PK__PERSONAS__C83612B1C194EA99");
+                    .HasName("PK__PERSONAS__C83612B1B64D74CB");
 
                 entity.ToTable("PERSONAS");
 
                 entity.Property(e => e.Identificador)
-                    .HasColumnType("numeric(18, 0)")
+                    .ValueGeneratedNever()
                     .HasColumnName("identificador");
 
                 entity.Property(e => e.Apellido)
@@ -85,12 +85,12 @@ namespace APIRest_WebForm.Data
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.Identificador)
-                    .HasName("PK__USUARIO__C83612B1ACBA89BD");
+                    .HasName("PK__USUARIO__C83612B124CA4351");
 
                 entity.ToTable("USUARIO");
 
                 entity.Property(e => e.Identificador)
-                    .HasColumnType("numeric(18, 0)")
+                    .ValueGeneratedNever()
                     .HasColumnName("identificador");
 
                 entity.Property(e => e.FechaCreacion)
