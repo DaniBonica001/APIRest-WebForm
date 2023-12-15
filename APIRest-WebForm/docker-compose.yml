@@ -1,0 +1,41 @@
+﻿version: '3.4'
+
+networks:
+    dev:
+        driver: bridge
+
+services:
+    api:
+        image: daboca/backendapi:v1
+        depends_on:
+            - db
+        container_name: api-services
+        ports:
+            - "8088:80"
+        
+        environment:
+            - ConnectionStrings__DefaultConnection=User ID=postgres; Password=postgres;Server=db;Port=5432;Database=WebUsers; IntegratedSecurity=true;Pooling=true;
+            - ASPNETCORE_URLS=http://+:80
+        networks:
+            - dev
+            
+    db:
+        image: postgres:latest
+        container_name: db
+        restart: always
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=WebUsers
+        ports:
+            - "5433:5432"
+        networks:
+            - dev
+        volumes:
+            - app_data:/var/lib/postgresql/data
+    
+volumes:
+    app_data:
+
+
+    
