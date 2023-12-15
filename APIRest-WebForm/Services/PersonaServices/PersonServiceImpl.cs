@@ -29,7 +29,9 @@ namespace APIRest_WebForm.Services.PersonaServices
                 Persona newPerson = PersonaMapper.FromPersonaDTOToPersona(personDTO);
                 newPerson.Identificador = Guid.NewGuid();
                 newPerson.FechaCreacion = DateTime.Now;
-
+                newPerson.TipoNumeroIdentificacion = personDTO.TipoIdentificacion + personDTO.NumeroIdentificacion;
+                newPerson.NombreApellidos = personDTO.Nombre + personDTO.Apellido;
+                
                 var passwordEncrypt = PasswordHasher.ComputeHash(personDTO.Pass,100);
 
                 Usuario newUsername = new()

@@ -1,23 +1,15 @@
-﻿{
-  "$schema": "https://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:7841",
-      "sslPort": 44305
-    }
-  },
+{
   "profiles": {
     "APIRest_WebForm": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7090;http://localhost:5140",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "secret": "writeasecretaslongasyoucanwritetoencryptanddecryptthepasswordsoftheusers"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7090;http://localhost:5140"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -26,6 +18,25 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "environmentVariables": {
+        "ASPNETCORE_URLS": "https://+:443;http://+:80"
+      },
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:7841",
+      "sslPort": 44305
     }
   }
 }
